@@ -21,16 +21,14 @@ struct Rectangle {
     p2: Point,
 }
 
+fn square(p: &Point, l: f32) -> Rectangle {
+    Rectangle { p1: Point { x: p.x    , y: p.y     },
+                p2: Point { x: p.x + l, y: p.y + l } }
+}
 
-fn rect_area(rect: Rectangle) -> f32 {
+fn area(rect: &Rectangle) -> f32 {
     let Rectangle { p1: Point { x: x1, y: y1 },
                     p2: Point { x: x2, y: y2 } }  = rect;
-    println!("x1: {}", x1);
-    println!("x2: {}", x2);
-    println!("y1: {}", y1);
-    println!("y2: {}", y2);
-    println!("x1 - x2: {:?}", x1 - x2);
-    println!("y1 - y2: {:?}", y1 - y2);
     ((x1 - x2) * (y1 - y2))
 }
 
@@ -56,7 +54,7 @@ fn main() {
     
     let _rectangle = Rectangle {
         p1: Point { x: my_y, y: my_x}, 
-        p2: point
+        p2: Point { x: point.y, y: point.x}
     }; 
 
     println!("_rectangle == {:?}", _rectangle);
@@ -64,12 +62,13 @@ fn main() {
     let _nil = Nil;
 
     let pair = Pair(1, 0.1);
-
     println!("pair contains {:?} and {:?}", pair.0, pair.1);
 
     let Pair(integer, decimal) = pair;
     println!("pair contains {:?}, and {:?}", integer, decimal);
 
     println!("_rectangle: {:?}", _rectangle);
-    println!("rect_area(&_rectangle) = {:?}", rect_area(_rectangle));
+    println!("area(&_rectangle) = {:?}", area(&_rectangle));
+
+    println!("square(point, 10f32) == {:?}", square(&point, 10f32));
 }
