@@ -10,6 +10,8 @@ fn main() {
 
     let mut count = 0;
 
+    // 'count' becomes part of the closure 'inc', so 'inc' must be mutable so it 
+    // can  increment 'count'.
     let mut inc = || {
         count += 1;
         println!("`count`: {}", count);
@@ -26,5 +28,5 @@ fn main() {
     };
 
     consume();
-    consume();
+    //consume();
 }
